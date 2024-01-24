@@ -18,24 +18,3 @@ cv.imshow('Video', capture)
 rv.rescaleFrame(capture) # the impoted module to rescale videos
 
 
-
-# Rescaling images and videos
-# def rescaleFrame(frame, scale=0.2):
-#     width = int(frame.shape[1] * scale)
-#     height = int(frame.shape[0] * scale)
-#     dimensions = (width,height)
-
-#     return cv.resize(frame, dimensions, interpolation=cv.INTER_AREA)
-
-# while True:
-#     isTrue, frame = capture.read()
-#     frame_resized = rescaleFrame(frame)
-
-#     cv.imshow('Video', frame)
-#     cv.imshow('video Resized', frame_resized)
-
-#     if cv.waitKey(20) & 0xFF==ord('d'): # 0xFF==ord('d') is used to stop the video when we press 'd' key
-#         break
-
-# capture.release()
-# cv.destroyAllWindows()
