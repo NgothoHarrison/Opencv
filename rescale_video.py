@@ -1,8 +1,9 @@
 import cv2 as cv
 
 capture = cv.VideoCapture('videos/video4.mp4')
-# to change resolution
 
+# to change resolution
+# only works for LIVE VIDEOS
 def changeResolution(width,height):
     capture.set(3,width)
     capture.set(4,height)
