@@ -5,13 +5,13 @@ img = cv.imread('images/cat1.webp')
 cv.imshow('Original', img)
 
 blank =np.zeros(img.shape[:2], dtype='uint8')
-cv.imshow('Blank Image', blank)
+# cv.imshow('Blank Image', blank)
 
 # masking --> masking is used to focus on a certain part of the image 
 # masking is used to hide certain parts of the image
 
 # making a circle mask on the blank generated image
-mask = cv.rectangle(blank, (img.shape[1]//2, img.shape[0]//2 ),(img.shape[1]//2 +50, img.shape[0]//2 + 50), 100,255, -1)
+mask = cv.circle(blank, (img.shape[1]//2, img.shape[0]//2 ), 100,255, -1)
 cv.imshow('Mask', mask)
 
 # masking the image loaded to the drawn circle mask
@@ -19,8 +19,20 @@ masked = cv.bitwise_and(img, img, mask=mask)
 cv.imshow('Masked Image', masked)
 
 # rectangle mask 
-rect_mask = cv.rectangle(img.shape[:2], (img.shape[1]//2, img.shape[0]//2 ), (img.shape[1]//2 + 50, img.shape[0]//2 + 50), 255, -1)
-cv.imshow('Rectangle Mask', rect_mask)
+rectangle = cv.rectangle(blank.copy(), (30,30) , (370,370), 255, -1)
+cv.imshow('Rectangle', rectangle)
 
+# masking the image loaded to the drawn rectangle mask
+rect_masked = cv.bitwise_and(img, img, mask=rectangle)
+cv.imshow('Rectangle Masked Image', rect_masked)
+
+# Triangle mask
+inverse = np.zeros(img.shape[:2], dtype='uint8')
+inverse = cv.bitwise_not(cv.circle(inverse, (img.shape[1]//2, img.shape[0]//2 ), 100,255, -1))
+cv.imshow('Inverse', inverse)
+
+
+inverse_mask = cv.bitwise_and(img, img, mask=inverse)
+cv.imshow('Inversed Masked Image', inverse_mask)
 
 cv.waitKey(0)
