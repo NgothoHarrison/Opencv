@@ -27,5 +27,4 @@ canny = cv.Canny(gray, 150, 175)
 cv.imshow('Canny', canny)
 
 
-
 cv.waitKey(0)
